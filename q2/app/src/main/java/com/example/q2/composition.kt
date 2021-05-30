@@ -7,70 +7,72 @@ import java.time.LocalDate
 
 class Composition {
     class Person {
-        private var name: String
-        private var birthDate   = LocalDate.of(1997, 08, 15) // Minha data, aceito presentes. xD
-        private var books: java.util.ArrayList<Book> = arrayOf()
+        private lateinit var name: String
+        @RequiresApi(Build.VERSION_CODES.O)
+        private var birthDate   = LocalDate.of(1997, 8, 15) // Minha data, aceito presentes. xD
+        private var books: ArrayList<Book> = arrayListOf()
 
-        public fun getName(): String {
+        fun getName(): String {
             return this.name
         }
 
-        public fun setName(name: String) {
+        fun setName(name: String) {
             this.name = name
         }
 
-        public fun isBirthday(): Boolean {
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun isBirthday(): Boolean {
             val today = LocalDate.now()
-            return this.birthDate = today
+            return this.birthDate == today
         }
 
-        public fun addBook(book: Book){
+        fun addBook(book: Book){
             this.books.add(book)
         }
 
-        public fun getBooks(): java.util.ArrayList<Book> {
+        fun getBooks(): java.util.ArrayList<Book> {
             return this.books
         }
 
-        public fun printPerson() {
+        fun printPerson() {
             println(
-                "Nome: "+ getName()
+                "Nome: ${name}"
             )
         }
 
-        public fun printBooks() {
+        fun printBooks() {
             println(
-                "Livros: "+ getBooks()
+                "Livros: ${books}"
             )
         }
     }
 
     class Book {
-        private var title: String
-        private var authors: java.util.ArrayList<String> = arrayOf()
-        private var proprietor: Person
+        private lateinit var title: String
+        private var authors: java.util.ArrayList<String> = arrayListOf()
+        private lateinit var proprietor: Person
 
-        public fun getTitle(): String {
+        fun getTitle(): String {
             return this.title
         }
 
-        public fun setTitle(title: String) {
+        fun setTitle(title: String) {
             this.title = title
         }
 
-        public fun getAuthors(): java.util.ArrayList<String> {
+        fun getAuthors(): java.util.ArrayList<String> {
             return this.authors
         }
 
-        public fun addAuthor(author: String) {
+        fun addAuthor(author: String) {
                 this.authors.add(author)
         }
 
-        public fun getProprietor(): Person {
+        fun getProprietor(): Person {
             return this.proprietor
         }
 
-        public fun setProprietor(proprietor: Person) {
+        fun setProprietor(proprietor: Person) {
             this.proprietor = proprietor
         }
     }
@@ -94,60 +96,60 @@ class Composition {
         book1.setProprietor(reader1)
         book1.setTitle("In Search Of Lost Time")
         book1.addAuthor("Marcel Proust")
-        reader1.addBook(1)
+        reader1.addBook(book1)
 
         val book2: Composition.Book = Composition.Book()
         book2.setProprietor(reader2)
         book2.setTitle("Ulysses")
         book2.addAuthor("James Joyce")
-        reader2.addBook(2)
+        reader2.addBook(book2)
 
         val book3: Composition.Book = Composition.Book()
         book3.setProprietor(reader2)
         book3.setTitle("Don Quixote")
         book3.addAuthor("Miguel de Cervantes")
-        reader2.addBook(3)
+        reader2.addBook(book3)
 
         val book4: Composition.Book = Composition.Book()
         book4.setProprietor(reader3)
         book4.setTitle("One Hundred Years of Soliture")
         book4.addAuthor("Gabriel Garcia Marquez")
-        reader3.addBook(4)
+        reader3.addBook(book4)
 
         val book5: Composition.Book = Composition.Book()
         book5.setProprietor(reader3)
         book5.setTitle("The Great Gatsby")
         book5.addAuthor("F. Scott Fitzgerald")
-        reader3.addBook(5)
+        reader3.addBook(book5)
 
         val book6: Composition.Book = Composition.Book()
         book6.setProprietor(reader3)
         book6.setTitle("Moby Dick")
         book6.addAuthor("Herman Melville")
-        reader3.addBook(6)
+        reader3.addBook(book6)
 
         val book7: Composition.Book = Composition.Book()
         book7.setProprietor(reader4)
         book7.setTitle("War and Peace")
         book7.addAuthor("Leo Tolstoy")
-        reader4.addBook(7)
+        reader4.addBook(book7)
 
         val book8: Composition.Book = Composition.Book()
         book8.setProprietor(reader4)
         book8.setTitle("Hamlet")
         book8.addAuthor("William Shakespeare")
-        reader4.addBook(8)
+        reader4.addBook(book8)
 
         val book9: Composition.Book = Composition.Book()
         book9.setProprietor(reader4)
         book9.setTitle("The Odyssey")
         book9.addAuthor("Homer")
-        reader4.addBook(9)
+        reader4.addBook(book9)
 
         val book10: Composition.Book = Composition.Book()
         book10.setProprietor(reader4)
         book10.setTitle("Madame Bovary")
         book10.addAuthor("Gustave Flaubert")
-        reader4.addBook(10)
+        reader4.addBook(book10)
     }
 }

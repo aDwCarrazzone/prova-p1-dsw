@@ -8,24 +8,26 @@ import java.time.LocalDate
 
 class Dependancy {
     class Person {
-        private var name: String
-        private var birthDate   = LocalDate.of(1997, 08, 15) // Minha data, aceito presentes. xD
+        private lateinit var name: String
+        @RequiresApi(Build.VERSION_CODES.O)
+        private var birthDate   = LocalDate.of(1997, 8, 15) // Minha data, aceito presentes. xD
 
-        public fun getName(): String {
+        fun getName(): String {
             return this.name
         }
 
-        public fun setName(name: String) {
+        fun setName(name: String) {
             this.name = name
         }
 
-        public fun isBirthday(): Boolean {
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun isBirthday(): Boolean {
             val today = LocalDate.now()
-            return this.birthDate = today
+            return this.birthDate == today
         }
 
-        public fun read(book: Book){
-            val read: java.util.ArrayList<String> = arrayOf()
+        fun read(book: Book): Boolean {
+            val read: java.util.ArrayList<String> = arrayListOf()
 
             read.add("In Search of Lost Time")
             read.add("Ulysses")
@@ -39,22 +41,22 @@ class Dependancy {
     }
 
     class Book {
-        private var title: String
-        private var authors: java.util.ArrayList<String> = arrayOf()
+        private lateinit var title: String
+        private var authors: java.util.ArrayList<String> = arrayListOf()
 
-        public fun getTitle(): String {
+        fun getTitle(): String {
             return this.title
         }
 
-        public fun setTitle(title: String) {
+        fun setTitle(title: String) {
             this.title = title
         }
 
-        public fun getAuthors(): java.util.ArrayList<String> {
+        fun getAuthors(): java.util.ArrayList<String> {
             return this.authors
         }
 
-        public fun addAuthor(author: String) {
+        fun addAuthor(author: String) {
                 this.authors.add(author)
         }
 
@@ -118,6 +120,5 @@ class Dependancy {
         println("O leitor ${reader.getName()} leu ou não o livro ${book8.getTitle()}? ${reader.read(book8)}")
         println("O leitor ${reader.getName()} leu ou não o livro ${book9.getTitle()}? ${reader.read(book9)}")
         println("O leitor ${reader.getName()} leu ou não o livro ${book10.getTitle()}? ${reader.read(book10)}")
-        printLn book1.getTitle()
     }
 }

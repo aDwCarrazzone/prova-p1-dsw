@@ -7,49 +7,51 @@ import java.time.LocalDate
 
 class Association {
     class Person {
-        private var name: String
-        private var birthDate   = LocalDate.of(1997, 08, 15) // Minha data, aceito presentes. xD
-        private var books: java.util.ArrayList<Book> = arrayOf()
+        private lateinit var name: String
+        @RequiresApi(Build.VERSION_CODES.O)
+        private var birthDate   = LocalDate.of(1997, 8,15) // Minha data, aceito presentes. xD
+        private var books: java.util.ArrayList<Book> = arrayListOf()
 
-        public fun getName(): String {
+        fun getName(): String {
             return this.name
         }
 
-        public fun setName(name: String) {
+        fun setName(name: String) {
             this.name = name
         }
 
-        public fun isBirthday(): Boolean {
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun isBirthday(): Boolean {
             val today = LocalDate.now()
-            return this.birthDate = today
+            return this.birthDate == today
         }
 
-        public fun addBook(book: Book){
+        fun addBook(book: Book){
             this.books.add(book)
         }
 
-        public fun getBooks(): java.util.ArrayList<Book> {
+        fun getBooks(): java.util.ArrayList<Book> {
             return this.books
         }
 
-        public fun printPerson() {
+        fun printPerson() {
             println(
-                "Nome: "+ getName()
+                "Nome: {$name}"
             )
         }
 
-        public fun printBooks() {
+        fun printBooks() {
             println(
-                "Livros: "+ getBooks()
+                "Livros: {$books}"
             )
         }
     }
 
     class Book {
-        private var title: String
-        private var authors: java.util.ArrayList<String> = arrayOf()
+        private lateinit var title: String
+        private var authors: java.util.ArrayList<String> = arrayListOf()
 
-        public fun getTitle(): String {
+        fun getTitle(): String {
             return this.title
         }
 
@@ -57,11 +59,11 @@ class Association {
             this.title = title
         }
 
-        public fun getAuthors(): java.util.ArrayList<String> {
+        fun getAuthors(): java.util.ArrayList<String> {
             return this.authors
         }
 
-        public fun addAuthor(author: String) {
+        fun addAuthor(author: String) {
             this.authors.add(author)
         }
     }
@@ -130,7 +132,7 @@ class Association {
         reader3.printPerson()
         reader3.printBooks()
 
-        val readerr4: Association.Person = Association.Person()
+        val reader4: Association.Person = Association.Person()
         reader4.setName("Caitrìona Prudenzio Vandale")
         reader4.addBook(book7)
         reader4.addBook(book8)
